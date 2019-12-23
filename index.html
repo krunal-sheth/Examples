@@ -1,0 +1,51 @@
+<html>
+ <style>
+  div {
+  display: flex;
+  flex-direction: column;
+}
+
+#textContent {
+  margin: 5px;
+  padding: 25px;
+  border: 1px red solid;
+}
+
+#actionResult {
+  margin: 5px;
+  padding: 25px;
+  border: 1px green solid;
+}
+
+ </style
+ <script>
+
+     var textContentElement = document.getElementById('textContent');
+    var actionResultElement = document.getElementById('actionResult');
+    var timeout;
+    var lastTap = 0;
+    textContentElement.addEventListener('touchend', function(event) {
+      var currentTime = new Date().getTime();
+      var tapLength = currentTime - lastTap;
+      clearTimeout(timeout);
+      if (tapLength < 300 && tapLength > 0) {
+        actionResultElement.innerHTML = 'Double Tap';
+        event.preventDefault();
+      } else {
+        actionResultElement.innerHTML = 'Single Tap';
+        timeout = setTimeout(function() {
+          actionResultElement.innerHTML = 'Single Tap (timeout)';
+          clearTimeout(timeout);
+        }, 300);
+      }
+      lastTap = currentTime;
+    });
+
+ /script>
+<body>
+<div>
+  <span id="textContent">JavaScript: Don't judge me by my bad parts, learn the good stuff and stick with that! </span>
+  <span id="actionResult"> Single Click or Double Click </span>
+</div>
+</body>
+</html>

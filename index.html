@@ -11,7 +11,24 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
+    <section class="auth-screen" id="authScreen">
+      <div class="auth-art"><div><span class="auth-star">✦</span><p>AN ANCIENT SCIENCE,<br>MADE PERSONAL</p><h1>Your sky holds<br>a story.</h1></div><small>Vedic astrology · Sidereal calculations · Private by design</small></div>
+      <div class="auth-panel">
+        <div class="auth-box"><a class="auth-brand" href="#">✦ &nbsp; JYOTISH</a><p class="eyebrow">WELCOME</p><h2 id="authTitle">Begin your journey</h2><p id="authIntro">Create an account to discover the patterns written in your birth chart.</p>
+          <form id="authForm"><label id="nameField">Your name<input name="name" autocomplete="name" placeholder="How should we address you?"></label><label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label><p class="form-error" id="authError"></p><button class="primary-button" type="submit">Create my account <span>→</span></button></form>
+          <p class="auth-switch"><span id="switchPrompt">Already have an account?</span> <button id="switchAuth" type="button">Sign in</button></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="onboarding" id="onboardingScreen" hidden>
+      <div class="onboarding-card"><a class="auth-brand" href="#">✦ &nbsp; JYOTISH</a><p class="step-label">YOUR KUNDLI · STEP 1 OF 1</p><h1>Tell us where your<br><em>story began.</em></h1><p>Exact birth details help us calculate your Lagna, Moon sign, Nakshatra and planetary positions.</p>
+        <form id="birthForm"><div class="form-row"><label>Date of birth<input type="date" name="birthDate" required></label><label>Exact birth time<input type="time" name="birthTime" required></label></div><label>Birthplace<input name="birthplace" required placeholder="e.g. Pune, Maharashtra, India"></label><div class="form-row three"><label>Latitude<input type="number" step="any" min="-90" max="90" name="latitude" required placeholder="18.5204"></label><label>Longitude<input type="number" step="any" min="-180" max="180" name="longitude" required placeholder="73.8567"></label><label>UTC offset<input type="number" step="0.5" min="-14" max="14" name="timezoneOffset" required value="5.5"></label></div><p class="location-help">Coordinates make the chart precise. Find them in your maps app; automated place search can be connected for production.</p><p class="form-error" id="birthError"></p><button class="primary-button" type="submit">Generate my Kundli <span>→</span></button></form>
+      </div>
+    </section>
+
+    <div class="loading-screen" id="loadingScreen"><span>✦</span><p>Reading the sky…</p></div>
+    <div class="app-shell" id="appShell" hidden>
       <aside class="sidebar">
         <a class="brand" href="#" aria-label="Jyotish home">
           <span class="brand-mark" aria-hidden="true">✦</span>
@@ -36,7 +53,7 @@
 
         <button class="profile" id="profileButton">
           <span class="avatar">AR</span>
-          <span><strong>Arjun Rao</strong><small>View profile</small></span>
+          <span><strong id="sidebarName">—</strong><small>View profile</small></span>
           <span class="more">•••</span>
         </button>
       </aside>
@@ -56,25 +73,25 @@
           <div class="hero-grid">
             <div class="greeting">
               <p class="eyebrow">YOUR DAILY READING</p>
-              <h1>Good morning,<br /><em>Arjun.</em></h1>
+              <h1>Good morning,<br /><em id="greetingName">friend.</em></h1>
               <p class="intro">Today asks you to trust the space between intention and action. Let clarity arrive before you move.</p>
             </div>
 
             <aside class="day-score">
-              <div class="score-ring"><span>78</span><small>/100</small></div>
-              <div><span class="eyebrow">DAY ENERGY</span><strong>Favorable</strong><small>Clarity · Connection · Growth</small></div>
+              <div class="score-ring" id="scoreRing"><span id="scoreValue">—</span><small>/100</small></div>
+              <div><span class="eyebrow">DAY ENERGY</span><strong id="energyValue">—</strong><small>Clarity · Connection · Growth</small></div>
             </aside>
           </div>
 
           <article class="forecast-card">
             <div class="card-heading">
               <span class="planet-icon">♃</span>
-              <div><p class="eyebrow">TODAY'S GUIDING TRANSIT</p><h2>Jupiter trine your natal Moon</h2></div>
+              <div><p class="eyebrow">TODAY'S GUIDING TRANSIT</p><h2 id="transitTitle">Calculating…</h2></div>
               <span class="transit-time">ACTIVE UNTIL 8:42 PM</span>
             </div>
             <div class="forecast-content">
-              <p class="dropcap">There is an ease to your emotional world today. Jupiter's generous gaze on your natal Moon opens a window for honest conversations, especially with those you consider family.</p>
-              <p>You may find that a concern you've carried quietly begins to feel lighter once spoken aloud. This is not a day for grand declarations, but for the kind of truth that brings people closer.</p>
+              <p class="dropcap" id="predictionSummary">Your reading is being prepared.</p>
+              <p id="predictionDetail"></p>
               <blockquote>“What you share with sincerity returns to you as understanding.”</blockquote>
             </div>
             <div class="transit-map" aria-label="Jupiter trine Moon diagram">
@@ -84,23 +101,23 @@
           </article>
 
           <div class="life-grid">
-            <article class="life-card"><span class="life-icon">♡</span><div><p class="eyebrow">RELATIONSHIPS</p><h3>Speak from the heart</h3><p>A gentle honesty can dissolve a distance you have been feeling. Listen without preparing your reply.</p></div><span class="rating">4/5</span></article>
-            <article class="life-card"><span class="life-icon">⌘</span><div><p class="eyebrow">WORK & PURPOSE</p><h3>Refine, don't rush</h3><p>Your best progress comes from improving what already exists. Details reveal the stronger direction.</p></div><span class="rating">3/5</span></article>
-            <article class="life-card"><span class="life-icon">◌</span><div><p class="eyebrow">WELLBEING</p><h3>Return to rhythm</h3><p>Make space for a slower morning. Your nervous system benefits from consistency more than intensity.</p></div><span class="rating">4/5</span></article>
+            <article class="life-card"><span class="life-icon">♡</span><div><p class="eyebrow">RELATIONSHIPS</p><h3>Connection</h3><p id="relationshipsText">—</p></div></article>
+            <article class="life-card"><span class="life-icon">⌘</span><div><p class="eyebrow">WORK & PURPOSE</p><h3>Purpose</h3><p id="workText">—</p></div></article>
+            <article class="life-card"><span class="life-icon">◌</span><div><p class="eyebrow">WELLBEING</p><h3>Balance</h3><p id="wellbeingText">—</p></div></article>
           </div>
 
           <section class="reflection">
             <span class="spark">✦</span>
-            <div><p class="eyebrow">A MOMENT OF REFLECTION</p><h2>What truth becomes easier to hold when you say it out loud?</h2></div>
+            <div><p class="eyebrow">A MOMENT OF REFLECTION</p><h2 id="reflectionText">What truth becomes easier to hold when you say it out loud?</h2></div>
             <button id="openJournal">Reflect on this <span>↗</span></button>
           </section>
 
           <section class="yesterday-check">
             <div><p class="eyebrow">YESTERDAY'S READING</p><h2>Did yesterday resonate with you?</h2><p>Your reflections help shape a more meaningful experience.</p></div>
             <div class="feedback-options" role="group" aria-label="Rate yesterday's reading">
-              <button data-rating="no"><span>○</span> Not really</button>
-              <button data-rating="some"><span>◑</span> Somewhat</button>
-              <button data-rating="yes"><span>●</span> Very much</button>
+              <button data-rating="-1"><span>○</span> Not really</button>
+              <button data-rating="0"><span>◑</span> Somewhat</button>
+              <button data-rating="1"><span>●</span> Very much</button>
             </div>
           </section>
         </section>
@@ -109,7 +126,7 @@
           <p class="eyebrow">YOUR BIRTH CHART</p><h1>My <em>Kundli</em></h1>
           <div class="kundli-layout">
             <div class="kundli-chart" aria-label="North Indian Kundli chart"><span class="chart-center">Asc<br><b>Libra</b></span><span class="house h1">Su</span><span class="house h2">Mo</span><span class="house h3">Ju</span><span class="house h4">Ma</span></div>
-            <div class="kundli-details"><p>19 November 1992 · 7:42 AM</p><p>Pune, Maharashtra, India</p><hr><div><span>Lagna</span><b>Libra</b></div><div><span>Janma Rashi</span><b>Cancer</b></div><div><span>Nakshatra</span><b>Pushya, Pada 2</b></div><div><span>Current Dasha</span><b>Jupiter · Moon</b></div><small>Calculated using the sidereal zodiac and Lahiri ayanamsha.</small></div>
+            <div class="kundli-details"><p id="birthDateTime">—</p><p id="birthplaceValue">—</p><hr><div><span>Lagna</span><b id="lagnaValue">—</b></div><div><span>Janma Rashi</span><b id="rashiValue">—</b></div><div><span>Nakshatra</span><b id="nakshatraValue">—</b></div><div><span>Birth Dasha</span><b id="dashaValue">—</b></div><small>Calculated using the sidereal zodiac and an approximate Lahiri ayanamsha. For spiritual reflection and entertainment.</small><button class="text-button" id="logoutButton">Sign out</button></div>
           </div>
         </section>
 

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: jyotish-app
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    disk:
+      name: jyotish-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_PATH
+        value: /data/jyotish.db
